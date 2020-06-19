@@ -4,16 +4,17 @@ namespace Game
 {
     public class Game
     {
-        static int posX = 1, posY = 1;
-        static int enemyX, enemyY;
-        static int itemX, itemY;
-        static int width = 10, height = 10;
+        public static int posX = 1, posY = 1;
+        public static int enemyX, enemyY;
+        public static int itemX, itemY;
+        public static int width = 10, height = 10;
         static char player = '@';
         static char space = '-';
         static char enemy = '$';
         static char item = '#';
-        static Random rand = new Random();
-        static int score = 0;
+        public static Random rand = new Random();
+        public static int score = 0;
+        public static float health;
         static void Main(string[] args)
         {
             enemyX = width;
@@ -22,9 +23,9 @@ namespace Game
             {
                 if (CollideWithEnemy()) break;
                 if (CollideWithItem()) { 
-                    CreateItem(); score++; 
+                    Item.CreateItem(); score++; 
                 }
-                CreateItem();
+                Item.CreateItem();
                 Draw();
 
                 ConsoleKeyInfo info = Console.ReadKey();
@@ -87,17 +88,6 @@ namespace Game
             return false;
         }
 
-        public static void CreateItem()
-        {
-            int x = rand.Next(1, width), y = posY;
-
-            while (y > posY - 2 && y < posY + 2)
-            {
-                y = rand.Next(1, height);
-            }
-
-            itemX = x;
-            itemY = y;
-        }
+        
     }
 }
